@@ -1,9 +1,9 @@
-from player import HumanPlayer, RandomComputerPlayer
+from player import HumanPlayer, RandomComputerPlayer, GeniusComputerPlayer
 
 
 class TicTacToe:
     def __init__(self):
-        self.board = [' ' for x in range(9)]  # a 3x3 board to play
+        self.board = [' ' for _ in range(9)]  # a 3x3 board to play
         self.current_winner = None
 
     def print_board(self):
@@ -24,6 +24,9 @@ class TicTacToe:
 
     def empty_squares(self):
         return ' ' in self.board
+
+    def num_empty_squares(self):
+        return self.board.count(' ')
 
     def make_move(self, square, letter):
         # If valid move: move and return True, else: return False.
@@ -90,6 +93,6 @@ def play(game, x_player, o_player, print_game=True):
 
 if __name__ == '__main__':
     x_p = HumanPlayer('x')
-    o_p = RandomComputerPlayer('o')
+    o_p = GeniusComputerPlayer('o')
     t = TicTacToe()
     play(t, x_p, o_p)
