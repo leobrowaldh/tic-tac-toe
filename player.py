@@ -42,8 +42,10 @@ class GeniusComputerPlayer(Player):
         if state.current_winner == other_player:
             # the score is our utility function: (empty squares + 1)*1 if max, *-1 if min.
             # (this is just a way of assigning value to the particular branch result)
+            # We want to maximize the moves that make us win, and minimize those who make
+            # the opponent win.
             return {'position': None, 'score': 1*(state.num_empty_squares() + 1) if
-                    other_player == max_player else 1*(state.num_empty_squares() + 1)}
+                    other_player == max_player else -1*(state.num_empty_squares() + 1)}
         # else if there are no empty squares to choose:
         elif not state.empty_squares():
             return {'position': None, 'score': 0}
